@@ -6,14 +6,14 @@ const useProducts = () => {
 
   return {
     // GETTERS
-    products: computed(() => store.getters["users/getProducts"]),
-    isLoading: computed(() => store.getters["users/getIsLoading"]),
-    product: computed(() => store.getters["users/getProduct"]),
+    products: computed(() => store.getters["products/getProducts"]),
+    isLoading: computed(() => store.getters["products/getIsLoading"]),
+    product: computed(() => store.getters["products/getProduct"]),
 
     // ACTIONS
-    fetchProducts: () => store.dispatch("users/fetchProducts"),
+    fetchProducts: () => store.dispatch("products/fetchProducts"),
     fetchProductById: (productId: number) =>
-      store.dispatch("users/fetchProductById", productId),
+      store.dispatch("products/fetchProductById", productId),
   };
 };
 

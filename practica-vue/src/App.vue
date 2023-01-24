@@ -1,10 +1,34 @@
 <template>
-  <nav>
-    <router-link to="/products">Products</router-link> |
-    <router-link to="/profile">Profile</router-link>
-  </nav>
-  <router-view/>
+  <NavBar title="VueShop" />
+  <NavBarLinks />
+  <router-view />
+  <CartList v-show="isCartOpen" />
 </template>
+
+<script lang="ts">
+import { defineComponent } from "vue";
+import NavBar from "@/components/NavBar.vue";
+import NavBarLinks from "@/components/NavBarLinks.vue";
+import CartList from "./components/CartList.vue";
+import { useCart } from "./composables/useCart";
+
+export default defineComponent({
+  name: "AppComponent",
+  components: {
+    NavBar,
+    NavBarLinks,
+    CartList,
+  },
+  setup() {
+    const { isCartOpen } = useCart();
+
+    return {
+      isCartOpen,
+    };
+  },
+});
+
+</script>
 
 <style>
 #app {

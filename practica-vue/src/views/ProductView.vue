@@ -3,7 +3,7 @@
     <h1>Product list</h1>
     <div v-if="isLoading">Loading...</div>
     <div class="product-list" v-else>
-      <ProductItem v-for="product in products" :key="product.title" :product="product" @goDetail="goDetail" />
+      <ProductItem v-for="product in products" :key="product.title" :product="product" @addCart="addElementToCart" @goDetail="goDetail" />
     </div>
   </div>
 
@@ -15,6 +15,7 @@ import useProducts from "@/composables/useProducts"
 import ProductItem from "@/components/ProductItem.vue";
 import { Product } from "@/models/product";
 import { useRouter } from "vue-router";
+import { useCart } from "@/composables/useCart";
 
 
 export default defineComponent({
@@ -24,11 +25,17 @@ export default defineComponent({
   },
   setup() {
     const { products, isLoading, fetchProducts } = useProducts();
+    const { addElementToCart } = useCart();
     const router = useRouter();
 
-
     fetchProducts();
-    return { products, isLoading, goDetail: (product: Product) => router.push({name: "detail", params: {id: product.id} }), }
+
+    return { 
+      products,
+      isLoading, 
+      addElementToCart,
+      goDetail: (product: Product) =>
+       router.push({name: "detail", params: {id: product.id} }), }
   }
 });
 

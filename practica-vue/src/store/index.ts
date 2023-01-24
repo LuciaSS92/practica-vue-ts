@@ -2,19 +2,21 @@
 import { createStore } from "vuex";
 import productsModule from "./products";
 import { Product } from "@/models/product";
+import cartModule from "./cart";
 
 export interface IState {
-  products: Product | null;
+  theProduct: Product | null;
 }
 
 export default createStore({
   state: {
-    products: null,
+    theProduct: null,
   },
   getters: {},
   mutations: {},
   actions: {},
   modules: {
+    cart: cartModule,
     products: productsModule,
   },
 });

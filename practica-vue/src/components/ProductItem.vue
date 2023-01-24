@@ -7,6 +7,9 @@
       <div class="product-title">{{ product.title }}</div>
       <div class="product-price">${{ product.price }}</div>
       <div class="buttons">
+        <button class="btn btn-sm btn-primary" @click="$emit('addCart', product)">
+          Add to cart
+        </button>
         <button class="btn btn-sm btn-success" @click="$emit('goDetail', product)">
           Details
         </button>

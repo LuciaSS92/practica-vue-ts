@@ -1,19 +1,23 @@
-<!-- <template>
-    <nav>
-        <div class="title">
+<template>
+  <nav>
+    <div class="title">
       <h4>{{ title }}</h4>
     </div>
-    </nav>
+    <div>
+      <button @click="toggleCart" class="btn btn-warning">Cart</button>
+      <button class="btn btn-danger">Logout</button>
+    </div>
+  </nav>
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, PropType } from "vue";
+import { defineComponent, } from "vue";
 import { useStore } from "vuex";
-import { Link } from "@/interfaces/link";
+import { useCart } from "@/composables/useCart";
 
 interface NavbarProps {
   title: string;
-  links: Link[];
+
   color?: string;
 }
 
@@ -24,19 +28,18 @@ export default defineComponent({
       type: String,
       required: true,
     },
-    
+
     color: String,
   },
-  setup(props: NavbarProps, ctx) {
-    const store = useStore();
-    
-
+  setup() {
+    useStore();
+    const { toggleCart } = useCart();
     return {
-      
-    
-    };
+      toggleCart,
+    }
   },
-});
+},
+);
 
 </script>
 
@@ -46,26 +49,11 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #2c3e50;
+  background-color: #808080;
   color: white;
-}
-h4 {
-  color: white;
-}
-.links,
-.title {
-  padding: 20px;
-}
-nav a {
-  font-weight: bold;
-  color: white;
-  padding: 10px;
-}
-.bg-red {
-  background-color: red;
 }
 
-.important-link {
-  font-size: larger;
+.title {
+  padding: 0.5rem;
 }
-</style> -->
+</style>

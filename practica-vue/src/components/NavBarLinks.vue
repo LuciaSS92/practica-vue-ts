@@ -8,8 +8,8 @@
                 <router-link :to="{ name: 'profile' }">Profile</router-link>
             </li>
             <li>
-        <router-link :to="{name: 'detail', params: {id: 1}}">Detail</router-link>
-      </li>
+                <router-link :to="{ name: 'login' }">Login</router-link>
+            </li>
         </ul>
     </nav>
 </template>
@@ -26,8 +26,8 @@ export default defineComponent({
 
 <style scoped>
 nav {
-    min-height: 50px;
-    background-color: coral;
+    padding: 0.5rem;
+    background-color: rgb(102, 224, 167);
 }
 
 ul {
@@ -41,12 +41,7 @@ li {
     font-weight: bold;
 }
 
-a {
-    color: white;
-    text-decoration: none;
-}
-
 a:visited {
-    color: white;
+    color: rgb(255, 255, 255);
 }
 </style>

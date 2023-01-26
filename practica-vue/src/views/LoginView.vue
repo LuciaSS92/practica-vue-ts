@@ -1,40 +1,81 @@
 <template>
   <div class="login">
     <h1>Login</h1>
-    <form action="" class="login-form" @submit.prevent="login">
+    <form action="" class="login-form" @submit.prevent="handleSubmit">
       <label class="form-label" for="#email">Email: </label>
       <input class="form-input" v-model="email" type="email" id="email" required placeholder="Email">
       <label class="form-label" for="#password">Password: </label>
       <input class="form-input" v-model="password" type="password" id="password" placeholder="Password">
       <input class="form-submit" type="submit" value="Login">
-      <p v-if="error" class="error">Invalid email or password</p>
+      <!-- <p v-if="error" class="error">Invalid email or password</p> -->
     </form>
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import axios from 'axios';
+
+
 export default {
-  data: () => ({
-    email: "",
-    password: "",
-    error: false
-  }),
-  methods: {
-    login() {
-      console.log(this.email);
-      console.log(this.password);
+  name: 'LoginView',
+  data() {
+    return {
+      email: "",
+      password: ""
     }
-  }
-};
+  },
+  methods: {
+    async handleSubmit() {
+      const response = await axios.post('https://api.escuelajs.co/api/v1/auth/login', {
+        email: this.email,
+        password: this.password
+      });
+      console.log(response);
+      localStorage.setItem('access_token', response.data.access_token); 
+      const token = localStorage.getItem('access_token');   
+      console.log(token);  
+    }
+  },
+}
+
+
 </script>
+
+
+
+  <!-- export default {
+    name: 'LoginView',
+    data() {
+      return {
+        email: "",
+        password: "",
+      }
+    },
+    methods:{
+      loginUser(){
+        const credentials ={
+          email: this.email,
+          password: this.password,
+        };
+        axios
+        .post('https://api.escuelajs.co/api/v1/auth/login', credentials)
+        .then((response) => console.log(response.data))
+        // .then((response) => localStorage.setItem('token', response.data.token))
+        .catch((err) => console.log(err.response));
+  
+      }
+    }
+    
+  } -->
+
+
+
+
+
 
 <style lang="css" scoped>
 .login {
   padding: 2rem;
-}
-
-.title {
-  text-align: center;
 }
 
 .form {

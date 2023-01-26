@@ -16,6 +16,8 @@ import ProductItem from "@/components/ProductItem.vue";
 import { Product } from "@/models/product";
 import { useRouter } from "vue-router";
 import { useCart } from "@/composables/useCart";
+import axios from "axios";
+
 
 
 export default defineComponent({
@@ -36,6 +38,14 @@ export default defineComponent({
       addElementToCart,
       goDetail: (product: Product) =>
        router.push({name: "detail", params: {id: product.id} }), }
+  },
+  async created() {
+    const response = await axios.get('https://api.escuelajs.co/api/v1/auth/profile', {
+      headers:{
+        Authorization: 'Bearer ' + localStorage.getItem('access_token')
+      }
+    });
+    console.log(response)
   }
 });
 

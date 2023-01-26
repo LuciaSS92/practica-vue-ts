@@ -1,11 +1,11 @@
 <template>
   <nav>
     <div class="title">
-      <h4>{{ title }}</h4>
+      <h4>VueShop</h4>
     </div>
     <div>
       <button @click="toggleCart" class="btn btn-warning">Cart</button>
-      <button class="btn btn-danger">Logout</button>
+      <button @click="handleLogout" class="btn btn-danger">Logout</button>
     </div>
   </nav>
 </template>
@@ -14,23 +14,10 @@
 import { defineComponent, } from "vue";
 import { useStore } from "vuex";
 import { useCart } from "@/composables/useCart";
-
-interface NavbarProps {
-  title: string;
-
-  color?: string;
-}
+import router from "@/router";
 
 export default defineComponent({
   name: "NavBar",
-  props: {
-    title: {
-      type: String,
-      required: true,
-    },
-
-    color: String,
-  },
   setup() {
     useStore();
     const { toggleCart } = useCart();
@@ -38,8 +25,14 @@ export default defineComponent({
       toggleCart,
     }
   },
-},
-);
+  methods: {
+    handleLogout() {
+      localStorage.removeItem('access_token');
+      alert("You have succesfully logged out");
+      router.push({ name: "login" });
+    }
+  },
+});
 
 </script>
 

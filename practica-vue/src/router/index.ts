@@ -4,23 +4,22 @@ import haveRoleGuard from "./role-guard";
 
 const routes: Array<RouteRecordRaw> = [
   {
-    path: "/auth/login",
+    path: "/login",
     name: "login",
-
     component: () =>
       import(/* webpackChunkName: "login" */ "../views/LoginView.vue"),
   },
   {
     path: "/products",
     name: "products",
-    // beforeEnter: [haveRoleGuard],
+    beforeEnter: [haveRoleGuard],
     component: () =>
       import(/* webpackChunkName: "product" */ "../views/ProductView.vue"),
   },
   {
     path: "/products/:id",
     name: "detail",
-    // beforeEnter: [haveRoleGuard],
+    beforeEnter: [haveRoleGuard],
     component: () =>
       import(/*webpackChunkName: "detail"*/ "../views/DetailView.vue"),
     props: (route) => {
@@ -32,7 +31,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/auth/profile",
     name: "profile",
-    // beforeEnter: [haveRoleGuard],
+    beforeEnter: [haveRoleGuard],
     component: () =>
       import(/* webpackChunkName: "profile" */ "../views/ProfileView.vue"),
   },
@@ -46,6 +45,15 @@ const router = createRouter({
   history: createWebHashHistory(),
   routes,
 });
+
+// router.beforeEach((to, from, next) => {
+//   document.title = to.meta.title;
+//   if (to.meta.Auth && !window.localStorage.getItem(‘_token’)) {
+//      next({ path: ‘/login’ });
+//   } else {
+//      next();
+//   }
+// });
 
 export default router;
 

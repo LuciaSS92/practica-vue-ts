@@ -1,5 +1,5 @@
 <template>
-    
+
     <div v-if="isLoading">Loading...</div>
     <div v-else>
         <h1>Title: {{ product.title }}</h1>
@@ -18,6 +18,7 @@
 import { useCart } from "@/composables/useCart";
 import useProducts from "@/composables/useProducts";
 import { defineComponent } from "vue";
+import axios from "axios";
 
 
 export default defineComponent({
@@ -26,7 +27,6 @@ export default defineComponent({
             type: Number,
             required: true,
         },
-        productRole: String,
     },
     setup(props) {
         const { addElementToCart } = useCart();
@@ -40,6 +40,15 @@ export default defineComponent({
             isLoading
         };
     },
+    async created() {
+    const response = await axios.get('https://api.escuelajs.co/api/v1/auth/profile', {
+      headers:{
+        Authorization: 'Bearer ' + localStorage.getItem('access_token')
+      }
+    });
+    console.log(response)
+  }
+
 });
 </script>
 

@@ -6,72 +6,42 @@
       <input class="form-input" v-model="email" type="email" id="email" required placeholder="Email">
       <label class="form-label" for="#password">Password: </label>
       <input class="form-input" v-model="password" type="password" id="password" placeholder="Password">
-      <input class="form-submit" type="submit" value="Login">
-      <!-- <p v-if="error" class="error">Invalid email or password</p> -->
+      <input class="form-submit" type="submit" value="Login">      
     </form>
   </div>
 </template>
 
 <script lang="ts">
 import axios from 'axios';
+import router from '@/router';
+import { defineComponent } from 'vue';
 
 
-export default {
+export default defineComponent ({
   name: 'LoginView',
   data() {
-    return {
+    return {      
       email: "",
-      password: ""
-    }
+      password: "",
+    }    
   },
   methods: {
     async handleSubmit() {
       const response = await axios.post('https://api.escuelajs.co/api/v1/auth/login', {
         email: this.email,
-        password: this.password
+        password: this.password,        
       });
       console.log(response);
       localStorage.setItem('access_token', response.data.access_token); 
-      const token = localStorage.getItem('access_token');   
-      console.log(token);  
+      const savedToken = localStorage.getItem('access_token');   
+      console.log(savedToken);  
+      alert("You have successfully logged it");
+      router.push({ name: "profile" });      
     }
   },
-}
-
+})
 
 </script>
-
-
-
-  <!-- export default {
-    name: 'LoginView',
-    data() {
-      return {
-        email: "",
-        password: "",
-      }
-    },
-    methods:{
-      loginUser(){
-        const credentials ={
-          email: this.email,
-          password: this.password,
-        };
-        axios
-        .post('https://api.escuelajs.co/api/v1/auth/login', credentials)
-        .then((response) => console.log(response.data))
-        // .then((response) => localStorage.setItem('token', response.data.token))
-        .catch((err) => console.log(err.response));
-  
-      }
-    }
-    
-  } -->
-
-
-
-
-
 
 <style lang="css" scoped>
 .login {

@@ -8,8 +8,9 @@ const haveRoleGuard = (to: RouteLocation, from: RouteLocation, next: any) => {
     next();
   } else {
     alert("You have to be logged in to access this content");
-    next({ name: "login" });
+    next({ name: "login" });    
   }
+  
 };
 
 export default haveRoleGuard;

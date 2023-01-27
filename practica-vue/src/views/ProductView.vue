@@ -3,7 +3,8 @@
     <h1>Product list</h1>
     <div v-if="isLoading">Loading...</div>
     <div class="product-list" v-else>
-      <ProductItem v-for="product in products" :key="product.title" :product="product" @addCart="addElementToCart" @goDetail="goDetail" />
+      <ProductItem v-for="product in products" :key="product.title" :product="product" @addCart="addElementToCart"
+        @goDetail="goDetail" />
     </div>
   </div>
 
@@ -20,11 +21,12 @@ import axios from "axios";
 
 
 
-export default defineComponent({
+export default defineComponent ({
   name: 'ProductView',
   components: {
     ProductItem,
   },
+
   setup() {
     const { products, isLoading, fetchProducts } = useProducts();
     const { addElementToCart } = useCart();
@@ -32,21 +34,22 @@ export default defineComponent({
 
     fetchProducts();
 
-    return { 
+    return {
       products,
-      isLoading, 
+      isLoading,
       addElementToCart,
       goDetail: (product: Product) =>
-       router.push({name: "detail", params: {id: product.id} }), }
+        router.push({ name: "detail", params: { id: product.id } }),
+    }
   },
   async created() {
     const response = await axios.get('https://api.escuelajs.co/api/v1/auth/profile', {
-      headers:{
+      headers: {
         Authorization: 'Bearer ' + localStorage.getItem('access_token')
       }
     });
     console.log(response)
-  }
+  },
 });
 
 

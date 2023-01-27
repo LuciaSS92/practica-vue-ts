@@ -17,7 +17,7 @@ export default defineComponent({
   components: {
     NavBar,
     NavBarLinks,
-    CartList,
+    CartList
   },
   setup() {
     const { isCartOpen } = useCart();

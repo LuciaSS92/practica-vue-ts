@@ -1,12 +1,11 @@
 <template>
-
   <div class="profile">
     <h1>Profile</h1>
-    <!-- <div v-if="isLoading">Loading...</div> -->
-    <!-- <div v-else> -->
     <div>
-      <h1>Nombre: </h1>
-      <h2>Email: </h2>
+      <h1>Name: {{ name }}</h1>
+      <h1>Email: {{ email }}</h1>
+      <h1>ID: {{ id }}</h1>
+      <h1>Avatar: {{ avatar }}</h1>
       <button @click="handleLogout" class="btn btn-danger">Logout</button>
     </div>
   </div>
@@ -15,24 +14,35 @@
 
 import axios from 'axios';
 import router from '@/router';
+import { defineComponent } from 'vue';
 
-export default {
-  name: 'ProfileView',
+export default defineComponent({
+  name: 'ProfileView',  
+  data() {
+    return {
+      id: "",
+      name: '',
+      email: "",
+      avatar: "",
+    };
+  },
   async created() {
-    const response = await axios.get('https://api.escuelajs.co/api/v1/auth/profile', {
-      headers:{
+    const data = await axios.get('https://api.escuelajs.co/api/v1/auth/profile', {
+      headers: {
         Authorization: 'Bearer ' + localStorage.getItem('access_token')
-      }
+      },
     });
-    console.log(response)
+    this.name = data.data.name;
+    this.email = data.data.email;
+    this.id = data.data.id;
+    this.avatar = data.data.avatar;
   },
   methods: {
     handleLogout() {
       localStorage.removeItem('access_token');
-      alert("You have succesfully logged out");
+      alert("You have successfully logged out");
       router.push({ name: "login" });
     }
   },
-}
-
+})
 </script>

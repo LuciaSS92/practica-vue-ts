@@ -46,14 +46,5 @@ const router = createRouter({
   routes,
 });
 
-// router.beforeEach((to, from, next) => {
-//   document.title = to.meta.title;
-//   if (to.meta.Auth && !window.localStorage.getItem(‘_token’)) {
-//      next({ path: ‘/login’ });
-//   } else {
-//      next();
-//   }
-// });
-
 export default router;
 

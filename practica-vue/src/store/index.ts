@@ -1,26 +1,23 @@
-// import { Product } from "@/models/product";
 import { createStore } from "vuex";
 import productsModule from "./products";
 import { Product } from "@/models/product";
 import cartModule from "./cart";
 
+
+
 export interface IState {
-  theProduct: Product | null;
-  user: null,
-    token: null,
+  theProduct: Product | null;  
+  token: null;
 }
 
 export default createStore({
   state: {
-    theProduct: null,
-    user: null,
+    authUser: null,
+    theProduct: null,    
     token: null,
   },
   getters: {},
-  mutations: {
-    setuser(state, user) {
-      state.user = user;
-    },
+  mutations: {    
     setToken(state, token) {
       state.token = token;
     },
@@ -28,7 +25,6 @@ export default createStore({
   actions: {},
   modules: {
     cart: cartModule,
-    products: productsModule,
-    // login: loginModule,
+    products: productsModule,        
   },
 });

@@ -5,7 +5,6 @@ const fakeShopApi = axios.create({
   headers: {
     'Authorization': `Bearer ${window.localStorage.getItem('access_token')}`,
   }
-
 });
 
 fakeShopApi.interceptors.request.use((config) => {

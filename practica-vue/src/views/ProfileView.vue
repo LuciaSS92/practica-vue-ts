@@ -1,13 +1,11 @@
 <template>
-  <div class="profile">
-    <h1>Profile</h1>
-    <div>
-      <h1>Name: {{ name }}</h1>
-      <h1>Email: {{ email }}</h1>
-      <h1>ID: {{ id }}</h1>
-      <h1>Avatar: {{ avatar }}</h1>
-      <button @click="handleLogout" class="btn btn-danger">Logout</button>
-    </div>
+  <h1>Profile</h1>  
+  <img :src="avatar" class="avatar" />
+  <div class="details">    
+    <h2>Name: {{ name }}</h2>
+    <h2>Email: {{ email }}</h2>
+    <h2>ID: {{ id }}</h2>
+    <button @click="handleLogout" class="btn btn-danger">Logout</button>
   </div>
 </template>
 <script lang="ts">
@@ -17,7 +15,7 @@ import router from '@/router';
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name: 'ProfileView',  
+  name: 'ProfileView',
   data() {
     return {
       id: "",
@@ -46,3 +44,24 @@ export default defineComponent({
   },
 })
 </script>
+
+<style scoped>
+h1 {
+  padding: 2rem;
+}
+
+.details {
+  float: right;
+  margin-right: 20%;
+  text-align: left;   
+}
+
+.avatar {
+  width: 35%;
+  float: left;
+  margin-left:15% ;
+  margin-bottom: 5%;
+}
+
+
+</style>

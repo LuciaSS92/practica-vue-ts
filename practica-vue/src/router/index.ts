@@ -25,7 +25,7 @@ const routes: Array<RouteRecordRaw> = [
     props: (route) => {
       const id = Number(route.params.id);
       // const productRole = localStorage.getItem("productRole");
-      return isNaN(id) ? { id: null,  } : { id,} ;
+      return isNaN(id) ? { id: null,  } : { id} ;
     },
   },
   {

@@ -7,11 +7,11 @@
       <div class="product-title">{{ product.title }}</div>
       <div class="product-price">${{ product.price }}</div>
       <div class="buttons">
-        <button class="btn btn-sm btn-primary" @click="$emit('addCart', product)">
-          Add to cart
-        </button>
-        <button class="btn btn-sm btn-success" @click="$emit('goDetail', product)">
+        <button class="btn btn-sm btn-info" @click="$emit('goDetail', product)">
           Details
+        </button>
+        <button class="btn btn-sm btn-success" @click="$emit('addCart', product)">
+          Add to cart
         </button>
       </div>
     </div>
@@ -34,18 +34,28 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.product-item {
-  width: 300px;
+.product-item {  
+  width: 400px;
+  border: 2px solid black;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
   display: flex;
-  border: 1px solid black;
+  flex-direction: column;
+
 }
 
 .product-images {
-  width: 50%;
+  width: 60%;
+  margin: 0 5px 0;
 }
 
 .product-images>img {
   width: 100%;
   height: auto;
+}
+
+.btn-info {
+  margin: 10px;
 }
 </style>

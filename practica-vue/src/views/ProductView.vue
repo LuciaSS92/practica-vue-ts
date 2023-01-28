@@ -61,5 +61,15 @@ export default defineComponent ({
   flex-flow: row wrap;
   width: 100%;
   gap: 1rem 1rem;
+  justify-content: center;
+  
+}
+
+h1{
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
 }
 </style>

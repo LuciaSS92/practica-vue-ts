@@ -4,7 +4,7 @@
       <h4>VueShop</h4>
     </div>
     <div>
-      <button @click="toggleCart" class="btn btn-warning">Cart</button>
+      <button @click="toggleCart" class="btn btn-success">Cart</button>
       <button @click="handleLogout" class="btn btn-danger">Logout</button>
     </div>
   </nav>
@@ -47,6 +47,10 @@ nav {
 }
 
 .title {
-  padding: 0.5rem;
+  padding: 5px;  
+}
+
+.btn{
+  margin: 5px;
 }
 </style>

@@ -6,9 +6,11 @@
       <input class="form-input" v-model="email" type="email" id="email" required placeholder="Email">
       <label class="form-label" for="#password">Password: </label>
       <input class="form-input" v-model="password" type="password" id="password" placeholder="Password">
-      <input class="form-submit" type="submit" value="Login">      
     </form>
+    <input class="form-submit" type="submit" value="Login">
+
   </div>
+
 </template>
 
 <script lang="ts">
@@ -17,26 +19,26 @@ import router from '@/router';
 import { defineComponent } from 'vue';
 
 
-export default defineComponent ({
+export default defineComponent({
   name: 'LoginView',
   data() {
-    return {      
+    return {
       email: "",
       password: "",
-    }    
+    }
   },
   methods: {
     async handleSubmit() {
       const response = await axios.post('https://api.escuelajs.co/api/v1/auth/login', {
         email: this.email,
-        password: this.password,        
+        password: this.password,
       });
       console.log(response);
-      localStorage.setItem('access_token', response.data.access_token); 
-      const savedToken = localStorage.getItem('access_token');   
-      console.log(savedToken);  
+      localStorage.setItem('access_token', response.data.access_token);
+      const savedToken = localStorage.getItem('access_token');
+      console.log(savedToken);
       alert("You have successfully logged it");
-      router.push({ name: "profile" });      
+      router.push({ name: "profile" });
     }
   },
 })
@@ -46,45 +48,34 @@ export default defineComponent ({
 <style lang="css" scoped>
 .login {
   padding: 2rem;
-}
-
-.form {
-  margin: 3rem auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 20%;
-  min-width: 350px;
-  max-width: 100%;
-  background: rgba(19, 35, 47, 0.9);
-  border-radius: 5px;
-  padding: 40px;
-  box-shadow: 0 4px 10px 4px rgba(0, 0, 0, 0.3);
 }
-
 .form-label {
   margin: 1rem;
   color: #42b983;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .form-input {
   padding: 5px;
   text-align: center;
-  background: none;
-  background-image: none;
   border: 1px solid white;
   color: black;
-  outline: 0;
   border-color: #42b983;
 }
-
 
 .form-submit {
   background: #42b983;
   border: none;
   color: white;
-  margin: 1rem;
+  margin: 1rem 47.25% 1rem;
   padding: 0.5rem;
   cursor: pointer;
+  width: 5%;
+  align-items: center;
 }
 </style>

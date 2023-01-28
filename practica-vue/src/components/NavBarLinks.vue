@@ -26,8 +26,10 @@ export default defineComponent({
 
 <style scoped>
 nav {
+    height: 5rem;
     padding: 0.5rem;
     background-color: rgb(102, 224, 167);
+    
 }
 
 ul {
@@ -44,4 +46,6 @@ li {
 a:visited {
     color: rgb(255, 255, 255);
 }
+
+
 </style>

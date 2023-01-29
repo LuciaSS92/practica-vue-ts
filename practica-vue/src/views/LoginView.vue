@@ -6,43 +6,37 @@
       <input class="form-input" v-model="email" type="email" id="email" required placeholder="Email">
       <label class="form-label" for="#password">Password: </label>
       <input class="form-input" v-model="password" type="password" id="password" placeholder="Password">
+      <input class="btn btn-success" type="submit" value="Login">
     </form>
-    <input class="form-submit" type="submit" value="Login">
-
   </div>
-
 </template>
 
 <script lang="ts">
-import axios from 'axios';
 import router from '@/router';
 import { defineComponent } from 'vue';
+import fakeShopApi from "@/api/fakeShopApi";
 
 
-export default defineComponent({
+export default defineComponent ({
   name: 'LoginView',
-  data() {
-    return {
+  data() {    
+    return {      
       email: "",
       password: "",
-    }
+    }       
   },
   methods: {
     async handleSubmit() {
-      const response = await axios.post('https://api.escuelajs.co/api/v1/auth/login', {
+      const response = await fakeShopApi.post('/auth/login', {
         email: this.email,
-        password: this.password,
-      });
-      console.log(response);
-      localStorage.setItem('access_token', response.data.access_token);
-      const savedToken = localStorage.getItem('access_token');
-      console.log(savedToken);
+        password: this.password               
+      });      
+      localStorage.setItem('access_token', response.data.access_token);               
       alert("You have successfully logged it");
-      router.push({ name: "profile" });
+      router.push({ name: "profile" });      
     }
   },
 })
-
 </script>
 
 <style lang="css" scoped>
@@ -68,14 +62,10 @@ export default defineComponent({
   border-color: #42b983;
 }
 
-.form-submit {
-  background: #42b983;
-  border: none;
-  color: white;
-  margin: 1rem 47.25% 1rem;
-  padding: 0.5rem;
-  cursor: pointer;
-  width: 5%;
-  align-items: center;
+.btn-success {  
+  background: #42b983;  
+  margin: 1rem 47.25% 1rem;  
+  cursor: pointer; 
+  
 }
 </style>

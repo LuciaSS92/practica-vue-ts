@@ -1,9 +1,7 @@
 import { RouteLocation } from "vue-router";
 
 const haveRoleGuard = (to: RouteLocation, from: RouteLocation, next: any) => {
-  console.log(to, from, next);
-
-  const token = localStorage.getItem("access_token");
+    const token = localStorage.getItem("access_token");
   if (token) {
     next();
   } else {
@@ -12,5 +10,4 @@ const haveRoleGuard = (to: RouteLocation, from: RouteLocation, next: any) => {
   }
   
 };
-
 export default haveRoleGuard;

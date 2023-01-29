@@ -1,7 +1,7 @@
 <template>
   <div class="product-item">
     <div class="product-images">
-      <img :src="`${product.images}`" :alt="product.title">
+      <img :src="`${product.images[0]}`" :alt="product.title">
     </div>
     <div class="product-info">
       <div class="product-title">{{ product.title }}</div>

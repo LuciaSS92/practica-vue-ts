@@ -1,7 +1,5 @@
-# practica-vue-ts
+# Practica-Vue: VueShop
+
 Práctica módulo: Vue y Typescript
 
-Pasos:
 
-cd practica-vue
-npm run serve

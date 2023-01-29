@@ -5,7 +5,7 @@
     </div>
     <div>
       <button @click="toggleCart" class="btn btn-success">Cart</button>
-      <button @click="handleLogout" class="btn btn-danger">Logout</button>
+      <button @click="handleLogOut" class="btn btn-danger">Logout</button>
     </div>
   </nav>
 </template>
@@ -14,24 +14,19 @@
 import { defineComponent, } from "vue";
 import { useStore } from "vuex";
 import { useCart } from "@/composables/useCart";
-import router from "@/router";
+import logOut from "@/api/logOut";
 
 export default defineComponent({
   name: "NavBar",
   setup() {
+    const { handleLogOut} = logOut();
     useStore();
     const { toggleCart } = useCart();
     return {
       toggleCart,
+      handleLogOut,
     }
-  },
-  methods: {
-    handleLogout() {
-      localStorage.removeItem('access_token');
-      alert("You have succesfully logged out");
-      router.push({ name: "login" });
-    }
-  },
+  },  
 });
 
 </script>

@@ -42,7 +42,6 @@ export default defineComponent({
 });
 </script>
 
-
 <style scoped>
 .cart {
   height: 100vh;

@@ -3,28 +3,19 @@ import productsModule from "./products";
 import { Product } from "@/models/product";
 import cartModule from "./cart";
 
-
-
 export interface IState {
-  theProduct: Product | null;  
-  token: null;
+  theProduct: Product | null;
 }
 
 export default createStore({
   state: {
-    authUser: null,
-    theProduct: null,    
-    token: null,
+    theProduct: null,
   },
   getters: {},
-  mutations: {    
-    setToken(state, token) {
-      state.token = token;
-    },
-  },
+  mutations: {},
   actions: {},
   modules: {
     cart: cartModule,
-    products: productsModule,        
+    products: productsModule,
   },
 });
